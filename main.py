@@ -1,0 +1,25 @@
+from tkinter import *
+from tkinter.colorchooser import askcolor
+from tkinter import ttk
+#Создание Обьекта окна
+root = Tk()
+
+#Значения по умолчанию
+size = 10
+color = "red"
+
+#Создание холста
+canv = Canvas(bg="white")
+canv.pack()
+
+#Функция для риосвания
+def draw(event):
+        canv.create_oval(event.x - size,
+                              event.y - size,
+                              event.x + size,
+                              event.y + size,
+                              fill=color, outline=color)
+        
+#Реакция холста на событие B1-Motion(Движение выши с зажатой лкм)
+canv.bind("<B1-Motion>",draw)
+root.mainloop()
