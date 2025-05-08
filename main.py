@@ -1,11 +1,40 @@
 from tkinter import *
 from tkinter.colorchooser import askcolor
 from tkinter import ttk
+
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #РЕГИСТРАЦИЯ
 
+#Подключение к БД
+connection_string = (
+    "DRIVER={SQL Server};"
+    "SERVER=DESKTOP-OGAMHE4\MSSQLSERVER01;"
+    "DATABASE=UserAuthDB;"
+    "UID=Azizi_admin;"
+    "PWD=9110084399;"
+)
 
+#Базовый интерфейс
 
+class AuthApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Auth System")
+        self.root.geometry("300x200")
+
+        # Создаем вкладки
+        self.notebook = ttk.Notebook(root)
+        self.login_tab = ttk.Frame(self.notebook)
+        self.register_tab = ttk.Frame(self.notebook)
+        self.notebook.add(self.login_tab, text="Вход")
+        self.notebook.add(self.register_tab, text="Регистрация")
+        self.notebook.pack(expand=True, fill="both")
+
+        # Инициализация вкладок
+        self.create_login_tab()
+        self.create_register_tab()
+
+    # ...
 
 
 
