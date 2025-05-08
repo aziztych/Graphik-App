@@ -4,20 +4,6 @@ import pyodbc
 from tkinter import colorchooser
 from tkinter import *
 
-class AuthApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Auth System")
-        self.root.geometry("300x200")
-
-        # Создаем вкладки
-        self.notebook = ttk.Notebook(root)
-        self.login_tab = ttk.Frame(self.notebook)
-        self.register_tab = ttk.Frame(self.notebook)
-        self.notebook.add(self.login_tab, text="Вход")
-        self.notebook.add(self.register_tab, text="Регистрация")
-        self.notebook.pack(expand=True, fill="both")
-
 # Создание Обьекта окна
 root = Tk()
 
@@ -50,18 +36,9 @@ def show_scale_window():
 # Создание меню
 main_menu = Menu(root)
 
-# Меню цвета
-color_menu = Menu(main_menu, tearoff=0)
-color_menu.add_command(label="Выбери цвет", command=lambda: change_color())
-color_menu.add_separator()
-color_menu.add_command(label="Exit", command=root.quit)
-
-# Меню размера
-size_menu = Menu(main_menu, tearoff=0)
-size_menu.add_command(label="Изменить размер", command=show_scale_window)
-
-main_menu.add_cascade(label="Цвет", menu=color_menu)
-main_menu.add_cascade(label="Размер", menu=size_menu)
+#Кнопки выбора цвета размера
+main_menu.add_cascade(label="Цвет", command=lambda: change_color())
+main_menu.add_cascade(label="Размер", command=show_scale_window)
 
 root.config(menu=main_menu)
 
