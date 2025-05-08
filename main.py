@@ -1,6 +1,7 @@
 from tkinter import Tk, ttk, messagebox, Canvas, Menu, Scale, Toplevel
 import tkinter as tk
 import pyodbc
+from tkinter import colorchooser
 from tkinter import *
 
 class AuthApp:
@@ -25,7 +26,7 @@ size = 10
 color = "red"
 
 # Создание холста
-canv = Canvas(bg="white")
+canv = Canvas(bg="white",height=1000, width=1900)
 canv.pack()
 
 # Функция для изменения размера
@@ -34,9 +35,9 @@ def change_size(val):
     size = int(float(val))
 
 # Функция для изменения цвета
-def change_color(new_color):
-    global color
-    color = new_color
+def change_color():
+    global color 
+    color = colorchooser.askcolor(initialcolor="black")
 
 # Функция для создания окна с Scale
 def show_scale_window():
@@ -51,9 +52,7 @@ main_menu = Menu(root)
 
 # Меню цвета
 color_menu = Menu(main_menu, tearoff=0)
-color_menu.add_command(label="Красный", command=lambda: change_color("red"))
-color_menu.add_command(label="Зеленый", command=lambda: change_color("green"))
-color_menu.add_command(label="Синий", command=lambda: change_color("blue"))
+color_menu.add_command(label="Выбери цвет", command=lambda: change_color())
 color_menu.add_separator()
 color_menu.add_command(label="Exit", command=root.quit)
 
@@ -72,7 +71,7 @@ def draw(event):
                      event.y - size,
                      event.x + size,
                      event.y + size,
-                     fill=color, outline=color)
+                     fill=color[1], outline=color[1])
 
 # Реакция холста на событие B1-Motion
 canv.bind("<B1-Motion>", draw)
